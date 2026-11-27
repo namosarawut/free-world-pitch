@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free World — เกมขนของในซอยไทย</title>
-<meta name="description" content="Free World (ชื่อชั่วคราว) เกม open world มุมมองบุคคลที่ 3 ฟิสิกส์สมจริง ขนทุกอย่างด้วยทุกอย่าง ผ่านซอยไทยที่มีชีวิต เริ่มที่จังหวัดชลบุรี">
-<meta property="og:title" content="Free World — เกมขนของในซอยไทย">
-<meta property="og:description" content="ขนทุกอย่าง ด้วยทุกอย่าง ผ่านซอยไทยที่มีชีวิต เกม open world ฟิสิกส์สมจริง เริ่มที่ชลบุรี">
+<title>Free World: เกมส่งของในซอยไทย</title>
+<meta name="description" content="เกมโลกเปิดมุมมองบุคคลที่ 3 รับงานส่งของในซอยไทย ตั้งแต่แตงโมยันตู้เย็น ของทุกชิ้นหล่นและหกได้จริง เริ่มที่ชลบุรี">
+<meta property="og:title" content="Free World: เกมส่งของในซอยไทย">
+<meta property="og:description" content="ส่งของในซอยไทย ที่ของไม่เคยอยู่นิ่ง เริ่มที่ชลบุรี">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#E8590C">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛵</text></svg>">
@@ -97,10 +97,6 @@ p { margin: 0; }
   font-family: "Kanit", sans-serif; font-weight: 600; font-size: 15px;
   color: var(--accent); letter-spacing: .04em; text-transform: uppercase;
   margin-bottom: 14px;
-}
-.kicker .num {
-  display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%;
-  background: var(--accent); color: var(--accent-ink); font-size: 14px;
 }
 h2 { font-size: clamp(32px, 5vw, 52px); font-weight: 700; margin-bottom: 14px; }
 .lead { font-size: clamp(18px, 2.2vw, 21px); color: var(--ink-2); max-width: 760px; margin-bottom: 36px; }
@@ -207,15 +203,6 @@ svg text { font-family: "Kanit", "IBM Plex Sans Thai", sans-serif; }
 .meter i.on { background: var(--accent); }
 .meter span { margin-right: 6px; }
 
-/* ---------- systems ---------- */
-.sys { display: flex; gap: 14px; align-items: flex-start; }
-.sys .ico {
-  flex: none; width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; font-size: 26px;
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
-}
-.sys h3 { font-size: 19px; margin-bottom: 4px; }
-.sys p { font-size: 15.5px; }
-
 /* ---------- map ---------- */
 .mapwrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 28px; align-items: center; }
 @media (max-width: 900px) { .mapwrap { grid-template-columns: 1fr; } }
@@ -317,7 +304,7 @@ footer { text-align: center; font-size: 13px; color: var(--ink-2); padding: 28px
 <body>
 <div class="progress" id="progress"></div>
 <div class="topbar">
-  <a class="brand" href="#s1">🛵 Free World</a>
+  <a class="brand" href="#s1">Free World</a>
   <button class="theme" id="theme" type="button" aria-label="สลับโหมดสว่าง/มืด">◐</button>
 </div>
 <nav class="dots" id="dots" aria-label="สไลด์"></nav>
@@ -328,14 +315,14 @@ footer { text-align: center; font-size: 13px; color: var(--ink-2); padding: 28px
 <section class="slide hero" id="s1" data-title="หน้าแรก">
   <div class="wrap">
     <div>
-      <span class="badge">ชื่อชั่วคราว · Release 1 · กำลังวางแผน</span>
+      <span class="badge">ชื่อยังไม่ตายตัว · อยู่ระหว่างวางแผน</span>
       <h1 class="display">Free <span>World</span></h1>
-      <p class="tagline">ขนทุกอย่าง ด้วยทุกอย่าง<br>ผ่านซอยไทยที่มีชีวิต</p>
-      <p class="lead">เกม open world 3D มุมมองบุคคลที่ 3 ที่ <b>ฟิสิกส์สมจริงคือตัวเกม</b> รับงานส่งของแปลกๆ มัดของขึ้นรถเอง แล้วฝ่าซอย ฝน หมา และตลาดนัด ไปส่งให้ถึงมือลูกค้าแบบไม่ช้ำ</p>
+      <p class="tagline">ส่งของในซอยไทย<br>ที่ของไม่เคยอยู่นิ่ง</p>
+      <p class="lead">เกมโลกเปิด มุมมองบุคคลที่ 3 คุณรับงานส่งของตั้งแต่แตงโมยันตู้เย็น จัดของขึ้นรถเอง มัดเอง แล้วขี่ไปส่ง ของทุกชิ้นมีน้ำหนักจริง เบรกแรงก็หล่น เลี้ยวไวก็หก</p>
       <div class="chips">
-        <span class="chip">🗺️ เริ่มที่ชลบุรี</span>
-        <span class="chip">⚙️ ฟิสิกส์สมจริง</span>
-        <span class="chip">🎮 เล่นง่าย เข้าใจใน 10 วินาที</span>
+        <span class="chip">เริ่มที่ชลบุรี</span>
+        <span class="chip">เล่นคนเดียว</span>
+        <span class="chip">PC</span>
       </div>
     </div>
     <svg class="scene" viewBox="0 0 500 360" role="img" aria-label="ภาพประกอบ: มอเตอร์ไซค์บรรทุกแตงโมจนล้นกำลังวิ่งบนถนน">
@@ -347,13 +334,11 @@ footer { text-align: center; font-size: 13px; color: var(--ink-2); padding: 28px
       </defs>
       <rect x="10" y="10" width="480" height="300" rx="28" fill="url(#sky)"/>
       <circle cx="390" cy="90" r="42" fill="var(--sun)" opacity=".9"/>
-      <!-- skyline -->
       <g fill="var(--ink)" opacity=".12">
         <rect x="40" y="150" width="50" height="110"/><rect x="95" y="120" width="40" height="140"/>
         <rect x="140" y="165" width="60" height="95"/><path d="M330 260 V170 l30 -30 l30 30 V260z"/>
         <rect x="400" y="150" width="55" height="110"/>
       </g>
-      <!-- road -->
       <rect x="10" y="260" width="480" height="50" fill="var(--ink)" opacity=".85"/>
       <clipPath id="roadclip"><rect x="10" y="260" width="480" height="50"/></clipPath>
       <g clip-path="url(#roadclip)">
@@ -365,7 +350,6 @@ footer { text-align: center; font-size: 13px; color: var(--ink-2); padding: 28px
         </g>
       </g>
       <g class="bounce">
-        <!-- cargo stack -->
         <g class="wobble">
           <rect x="196" y="176" width="112" height="16" rx="4" fill="#8B5A2B"/>
           <circle cx="214" cy="160" r="17" fill="var(--leaf)"/><circle cx="249" cy="160" r="17" fill="var(--leaf)"/><circle cx="284" cy="160" r="17" fill="var(--leaf)"/>
@@ -375,12 +359,9 @@ footer { text-align: center; font-size: 13px; color: var(--ink-2); padding: 28px
             <path d="M206 150 q8 10 0 22"/><path d="M241 150 q8 10 0 22"/><path d="M276 150 q8 10 0 22"/>
             <path d="M223 120 q8 10 0 22"/><path d="M258 120 q8 10 0 22"/><path d="M241 91 q8 10 0 22"/>
           </g>
-          <!-- strap -->
           <path d="M200 182 C215 90, 285 90, 304 182" stroke="var(--pink)" stroke-width="4" fill="none" stroke-dasharray="8 5"/>
-          <!-- the one that escapes -->
           <g class="melon-fall"><circle cx="300" cy="104" r="15" fill="var(--leaf)"/><path d="M292 95 q7 9 0 19" stroke="#1E5A25" stroke-width="2" fill="none" opacity=".6"/></g>
         </g>
-        <!-- scooter -->
         <path d="M170 236 h150 q16 0 22 -16 l10 -28 h22 l-8 30 q-6 22 -30 26 h-166z" fill="var(--accent)"/>
         <rect x="186" y="190" width="126" height="10" rx="5" fill="var(--ink)" opacity=".75"/>
         <path d="M352 192 l18 -46 h14" stroke="var(--ink)" stroke-width="7" stroke-linecap="round" fill="none"/>
@@ -388,87 +369,87 @@ footer { text-align: center; font-size: 13px; color: var(--ink-2); padding: 28px
         <circle cx="340" cy="252" r="24" fill="var(--ink)"/><circle cx="340" cy="252" r="10" fill="var(--bg)"/>
         <circle cx="388" cy="158" r="6" fill="var(--sun)"/>
       </g>
-      <text x="250" y="342" text-anchor="middle" font-family="Kanit" font-size="15" fill="var(--ink-2)">บรรทุกเกิน = ได้เงินเยอะ… ถ้าไปถึง 😅</text>
+      <text x="250" y="342" text-anchor="middle" font-size="15" fill="var(--ink-2)">ใส่เกินได้เงินเยอะ ถ้าไปถึงนะ</text>
     </svg>
   </div>
   <div class="scroll-hint">เลื่อนลง หรือกดปุ่มลูกศร<i></i></div>
 </section>
 
 <!-- 2. WHAT -->
-<section class="slide" id="s2" data-title="เกมนี้คืออะไร">
+<section class="slide" id="s2" data-title="ภาพรวม">
   <div class="wrap">
-    <div class="kicker"><span class="num">1</span> สรุปใน 30 วินาที</div>
-    <h2>เกมนี้คืออะไร?</h2>
-    <p class="lead">ลองนึกถึงไรเดอร์ส่งของ แต่ของที่ต้องส่งคือแตงโม 40 ลูก ก๋วยเตี๋ยวน้ำ หรือเค้กแต่งงาน และทุกอย่างหล่น หก กลิ้ง ได้จริงตามหลักฟิสิกส์</p>
+    <div class="kicker">ภาพรวม</div>
+    <h2>เล่นเป็นคนส่งของ</h2>
+    <p class="lead">ไม่มีปืน ไม่มีตำรวจไล่ มีแค่คุณ รถหนึ่งคัน กับของที่ต้องไปส่งให้ครบ</p>
     <div class="grid g3">
-      <div class="card reveal"><span class="emoji">🎮</span><h3>ประเภทเกม</h3><p>Open world 3D มุมมองบุคคลที่ 3 แนวขนส่งที่ใช้ฟิสิกส์สมจริงเป็นหัวใจ เล่นคนเดียว</p></div>
-      <div class="card reveal"><span class="emoji">🏝️</span><h3>ฉาก</h3><p>เมืองไทยที่สร้างจากข้อมูลแผนที่จริง เริ่มที่จังหวัดชลบุรี มีทะเล ตลาด ท่าเรือ และเนินเขา</p></div>
-      <div class="card reveal"><span class="emoji">📦</span><h3>เล่นยังไง</h3><p>รับงานจากแอปในมือถือ จัดของขึ้นรถ ขับไปส่ง ได้เงินตามสภาพของและความเร็ว แล้วเอาไปอัปเกรดรถ</p></div>
+      <div class="card reveal"><h3>ฉาก</h3><p>ชลบุรีที่สร้างจากข้อมูลแผนที่จริง มีถนนเลียบทะเล ตลาด ซอยแคบ และเนินเขา ส่วนร้านค้ากับคนในเกมเป็นของสมมติ</p></div>
+      <div class="card reveal"><h3>สิ่งที่ทำ</h3><p>รับงานในแอป เลือกรถ จัดของ แล้วขี่ไปส่ง ได้เงินมากหรือน้อยขึ้นกับว่าของถึงมือลูกค้าในสภาพไหน</p></div>
+      <div class="card reveal"><h3>จุดขาย</h3><p>ฟิสิกส์ของสิ่งของ แตงโมกลิ้งได้ ซุปหกได้ เค้กเละได้ และส่วนใหญ่มันก็จะเป็นแบบนั้น</p></div>
     </div>
   </div>
 </section>
 
 <!-- 3. PILLARS -->
-<section class="slide" id="s3" data-title="หลักออกแบบ">
+<section class="slide" id="s3" data-title="หลักที่ยึดไว้">
   <div class="wrap">
-    <div class="kicker"><span class="num">2</span> หลักออกแบบ</div>
-    <h2>เข้าถึงง่าย แต่แปลกใหม่</h2>
-    <p class="lead">ทุกระบบในเกมต้องผ่าน 3 ข้อนี้</p>
+    <div class="kicker">หลักที่ยึดไว้</div>
+    <h2>สามข้อที่ใช้ตัดสินทุกฟีเจอร์</h2>
+    <p class="lead">ฟีเจอร์ไหนไม่เข้าข้อพวกนี้ เราตัดทิ้งก่อน</p>
     <div class="grid g3">
-      <div class="card pillar reveal"><span class="big">1</span><span class="emoji">🧠</span><h3>ข้างในลึก ปุ่มง่าย</h3><p>ฟิสิกส์คำนวณจริงทั้งหมด แต่กดปุ่มเดียวก็มัดของได้ และมีตัวช่วยขับ มือใหม่เล่นได้ทันที ส่วนสายจริงจังปิดตัวช่วยเองได้</p></div>
-      <div class="card pillar reveal"><span class="big">2</span><span class="emoji">😂</span><h3>พังแล้วต้องขำ</h3><p>ซุปหก แตงโมกลิ้ง รถล้ม ต้องทำให้หัวเราะก่อนหงุดหงิด และมีรีเพลย์ให้แชร์ฉากพังได้ทันที</p></div>
-      <div class="card pillar reveal"><span class="big">3</span><span class="emoji">🌗</span><h3>แผนที่เล็ก แต่เวลาลึก</h3><p>ซอยเดียวกันตอนเช้า ตอนฝนตก และตอนตลาดนัดตั้งแผง เล่นไม่เหมือนกัน ความสนุกไม่ได้มาจากขนาดแผนที่</p></div>
+      <div class="card pillar reveal"><span class="big">1</span><h3>เล่นง่ายก่อน ลึกทีหลัง</h3><p>ข้างในคำนวณฟิสิกส์จริง แต่ปุ่มต้องง่าย มัดของกดปุ่มเดียว มีตัวช่วยทรงตัวให้ ใครอยากเล่นยากก็ค่อยปิดเอา</p></div>
+      <div class="card pillar reveal"><span class="big">2</span><h3>พังแล้วต้องขำ</h3><p>ของหล่นทั้งคันควรทำให้หัวเราะ ไม่ใช่อยากปิดเกม เลยมีรีเพลย์ไว้ดูตอนพังด้วย</p></div>
+      <div class="card pillar reveal"><span class="big">3</span><h3>แมพเล็ก แต่ไม่ซ้ำ</h3><p>ซอยเดิมตอนเช้า ตอนฝนตก กับตอนตลาดนัดมาตั้ง ขี่ไม่เหมือนกันเลย เราเลือกทำพื้นที่เล็กให้แน่น ดีกว่าทำใหญ่แล้วโล่ง</p></div>
     </div>
   </div>
 </section>
 
 <!-- 4. LOOP -->
-<section class="slide" id="s4" data-title="วงจรการเล่น">
+<section class="slide" id="s4" data-title="หนึ่งรอบการเล่น">
   <div class="wrap">
-    <div class="kicker"><span class="num">3</span> วงจรการเล่น</div>
-    <h2>10 นาทีในเกม</h2>
-    <p class="lead">ผู้เล่นทำสิ่งนี้วนไปเรื่อยๆ และงานจะยากและแปลกขึ้นทุกรอบ</p>
+    <div class="kicker">หนึ่งรอบการเล่น</div>
+    <h2>รับงาน ขี่ ส่ง วนไป</h2>
+    <p class="lead">หนึ่งรอบใช้เวลาประมาณสิบนาที</p>
     <div class="loop">
-      <div class="card step reveal"><span class="emoji">📱</span><h3>รับงาน</h3><p>เลือกงานจากแอปในมือถือ</p></div>
-      <div class="card step reveal"><span class="emoji">🛵</span><h3>เลือกรถ</h3><p>มอไซค์ ซาเล้ง หรือกระบะ</p></div>
-      <div class="card step reveal"><span class="emoji">🪢</span><h3>จัดและมัดของ</h3><p>จะบรรทุกเกินดีไหม?</p></div>
-      <div class="card step reveal"><span class="emoji">🌧️</span><h3>ฝ่าซอย</h3><p>ฝน หมา ตลาดนัด และทางลัด</p></div>
-      <div class="card step reveal"><span class="emoji">💰</span><h3>ส่งของ</h3><p>ได้เงินตามสภาพของ + ทิป</p></div>
+      <div class="card step reveal"><h3>รับงาน</h3><p>เปิดแอปในมือถือ เลือกงานที่อยากทำ</p></div>
+      <div class="card step reveal"><h3>เลือกรถ</h3><p>มอไซค์ ซาเล้ง หรือกระบะ แล้วแต่ของ</p></div>
+      <div class="card step reveal"><h3>จัดของ</h3><p>วางเอง มัดเอง จะใส่เกินก็ได้ ถ้ากล้า</p></div>
+      <div class="card step reveal"><h3>ออกเดินทาง</h3><p>ฝนตก หมาไล่ ตลาดนัดปิดถนน</p></div>
+      <div class="card step reveal"><h3>ส่งของ</h3><p>ได้เงินตามสภาพของ บวกทิปถ้าลูกค้าพอใจ</p></div>
     </div>
-    <div class="loop-back reveal">↺ เอาเงินไป <b>อัปเกรดรถ</b> และสร้าง <b>ชื่อเสียงในซอย</b> เพื่อปลดล็อกงานที่แปลกกว่าเดิม</div>
+    <div class="loop-back reveal">เงินที่ได้เอาไปแต่งรถ คนในซอยเริ่มจำหน้าได้ แล้ว<b>งานที่แปลกกว่าเดิม</b>ก็จะเข้ามา</div>
   </div>
 </section>
 
 <!-- 5. JOBS -->
-<section class="slide" id="s5" data-title="งานขนส่ง">
+<section class="slide" id="s5" data-title="ตัวอย่างงาน">
   <div class="wrap">
-    <div class="kicker"><span class="num">4</span> งานขนส่ง</div>
-    <h2>แต่ละงาน บังคับให้ขับไม่เหมือนกัน</h2>
-    <p class="lead">ไม่ใช่แค่ไปจาก A ไป B แต่ของแต่ละแบบมีน้ำหนัก ทรง และความเปราะต่างกัน</p>
+    <div class="kicker">ตัวอย่างงาน</div>
+    <h2>ของแต่ละอย่าง ขี่ไม่เหมือนกัน</h2>
+    <p class="lead">งานชุดแรกที่เราอยากทำ</p>
     <div class="grid g3">
-      <div class="card reveal"><span class="emoji">🍉</span><h3>แตงโม 40 ลูก</h3><p>ของกลมกลิ้งได้ ต้องจัดเรียงดีๆ ไม่งั้นหล่นตลอดทาง</p><div class="meter"><span>ความยาก</span><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></div>
-      <div class="card reveal"><span class="emoji">🍜</span><h3>ก๋วยเตี๋ยวน้ำ</h3><p>เบรกแรงหรือเลี้ยวไวน้ำซุปก็หก ต้องขับนุ่มที่สุด</p><div class="meter"><span>ความยาก</span><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
-      <div class="card reveal"><span class="emoji">🧊</span><h3>น้ำแข็ง</h3><p>ละลายตามเวลาและแดด ยิ่งเที่ยงยิ่งต้องรีบ</p><div class="meter"><span>ความยาก</span><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
-      <div class="card reveal"><span class="emoji">🎂</span><h3>เค้กแต่งงาน</h3><p>เปราะที่สุด ตกหลุมทีเดียวงานแต่งก็พัง</p><div class="meter"><span>ความยาก</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
-      <div class="card reveal"><span class="emoji">🛏️</span><h3>ย้ายบ้าน</h3><p>ตู้เย็นกับที่นอนบนกระบะ ลมพัดแรง เลี้ยวในซอยแคบ</p><div class="meter"><span>ความยาก</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
-      <div class="card reveal"><span class="emoji">🎋</span><h3>ข้าวหลาม</h3><p>ของดีชลบุรี กระบอกไม้ไผ่ยาว ล้มง่าย ต้องมัดให้แน่น</p><div class="meter"><span>ความยาก</span><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div><span class="tag">ของประจำถิ่น</span></div>
+      <div class="card reveal"><span class="emoji">🍉</span><h3>แตงโม 40 ลูก</h3><p>กลม หนัก และกลิ้งเก่ง จัดไม่ดีก็ได้เก็บกันตลอดทาง</p><div class="meter"><span>ความยาก</span><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></div>
+      <div class="card reveal"><span class="emoji">🍜</span><h3>ก๋วยเตี๋ยวน้ำ</h3><p>เบรกนิดเดียวน้ำก็หก ลูกค้าไม่ได้สั่งเส้นแห้ง</p><div class="meter"><span>ความยาก</span><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
+      <div class="card reveal"><span class="emoji">🧊</span><h3>น้ำแข็ง</h3><p>ละลายไปเรื่อยๆ ยิ่งเที่ยงยิ่งต้องรีบ</p><div class="meter"><span>ความยาก</span><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
+      <div class="card reveal"><span class="emoji">🎂</span><h3>เค้กแต่งงาน</h3><p>ตกหลุมทีเดียวก็จบ ทั้งเค้กทั้งงานแต่ง</p><div class="meter"><span>ความยาก</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+      <div class="card reveal"><span class="emoji">🛏️</span><h3>ย้ายบ้าน</h3><p>ตู้เย็นกับที่นอนบนกระบะ ลมมาทีก็ลุ้นที</p><div class="meter"><span>ความยาก</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+      <div class="card reveal"><span class="emoji">🎋</span><h3>ข้าวหลาม</h3><p>ของขึ้นชื่อชลบุรี กระบอกยาว ล้มง่าย ต้องมัดดีๆ</p><div class="meter"><span>ความยาก</span><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div><span class="tag">ของท้องถิ่น</span></div>
     </div>
   </div>
 </section>
 
 <!-- 6. SYSTEMS -->
-<section class="slide" id="s6" data-title="ระบบเด่น">
+<section class="slide" id="s6" data-title="ระบบในเกม">
   <div class="wrap">
-    <div class="kicker"><span class="num">5</span> ระบบเด่น</div>
-    <h2>สิ่งที่ทำให้เกมนี้ไม่เหมือนใคร</h2>
-    <p class="lead">ทุกระบบส่งเสริมกัน และใช้ฟิสิกส์เป็นตัวขับเคลื่อน</p>
+    <div class="kicker">ระบบในเกม</div>
+    <h2>ของที่อยากให้มีตั้งแต่เดโมแรก</h2>
+    <p class="lead">ถ้าเวลาไม่พอ บางอย่างอาจขยับไปเวอร์ชันถัดไป</p>
     <div class="grid g2">
-      <div class="card sys reveal"><div class="ico">🪢</div><div><h3>บรรทุกและมัดของ</h3><p>วางของเองอิสระ กดปุ่มเดียวระบบช่วยมัดให้ จะบรรทุกเกินก็ได้ แต่รถจะโคลงและเบรกไม่อยู่</p></div></div>
-      <div class="card sys reveal"><div class="ico">🛟</div><div><h3>ตัวช่วยคนขับ</h3><p>ช่วยทรงตัว กันล้อล็อก และ slow-motion ตอนเกือบชน ยิ่งปิดตัวช่วยเยอะ ยิ่งได้ทิปเยอะ</p></div></div>
-      <div class="card sys reveal"><div class="ico">🎬</div><div><h3>รีเพลย์ฉากพัง</h3><p>บันทึก 15 วินาทีล่าสุดตลอดเวลา ชนปุ๊บดูย้อนหลังได้ทันที เปลี่ยนมุมกล้องได้ แล้วแชร์เป็นคลิป</p></div></div>
-      <div class="card sys reveal"><div class="ico">🐕</div><div><h3>ซอยที่มีชีวิต</h3><p>หมาซอยวิ่งไล่ พายุฝนบ่าย น้ำท่วมขัง ซ่อมถนน และตลาดนัดตอนเย็นที่ปิดถนนจนเส้นทางเปลี่ยน</p></div></div>
-      <div class="card sys reveal"><div class="ico">🧭</div><div><h3>ค้นพบทางลัด</h3><p>เริ่มเกมเห็นแค่ถนนใหญ่ ทางลัดผ่านตลาดและตรอกต้องค้นพบเอง ยิ่งเล่นยิ่งรู้จักเมือง</p></div></div>
-      <div class="card sys reveal"><div class="ico">📱</div><div><h3>มือถือในเกม</h3><p>ทุกเมนูเป็นแอปในมือถือ ทั้งรับงาน แผนที่ และแชทกับลูกค้า ("พี่ถึงยังคะ")</p></div></div>
+      <div class="card reveal"><h3>การมัดของ</h3><p>กดปุ่มเดียวก็มัดให้ ถ้าอยากมัดเองทีละเส้นก็ทำได้ ใส่ของเกินคันได้ แต่รถจะเริ่มโคลง</p></div>
+      <div class="card reveal"><h3>ตัวช่วยขับ</h3><p>ช่วยทรงตัว กันล้อล็อก และภาพช้าลงตอนเกือบชน ปิดได้ทีละอย่าง ยิ่งปิดเยอะยิ่งได้ทิปเยอะ</p></div>
+      <div class="card reveal"><h3>รีเพลย์</h3><p>เกมจำ 15 วินาทีล่าสุดไว้ตลอด ชนเมื่อไหร่กดดูย้อนได้เลย เผื่ออยากอัดไปให้เพื่อนดู</p></div>
+      <div class="card reveal"><h3>ซอยที่มีชีวิต</h3><p>หมาซอย ฝนตกตอนบ่าย น้ำขัง ซ่อมถนน และตลาดนัดตอนเย็นที่ทำให้ต้องเปลี่ยนเส้นทาง</p></div>
+      <div class="card reveal"><h3>ทางลัด</h3><p>แผนที่ตอนแรกมีแค่ถนนใหญ่ ทางลัดผ่านตลาดหรือตรอกเล็กต้องไปเจอเอง</p></div>
+      <div class="card reveal"><h3>มือถือ</h3><p>เมนูทั้งหมดอยู่ในมือถือของตัวละคร ทั้งรับงาน แผนที่ และแชทกับลูกค้าที่ชอบถามว่า "ถึงไหนแล้วคะ"</p></div>
     </div>
   </div>
 </section>
@@ -476,48 +457,37 @@ footer { text-align: center; font-size: 13px; color: var(--ink-2); padding: 28px
 <!-- 7. MAP -->
 <section class="slide" id="s7" data-title="แผนที่">
   <div class="wrap">
-    <div class="kicker"><span class="num">6</span> แผนที่</div>
-    <h2>เริ่มที่ชลบุรี แล้วขยายทีละจังหวัด</h2>
-    <p class="lead">สร้างจากข้อมูลภูมิประเทศและแผนที่ถนนจริง แต่ร้านค้าและผู้คนเป็นของสมมติทั้งหมด</p>
+    <div class="kicker">แผนที่</div>
+    <h2>เริ่มจากชลบุรีก่อน</h2>
+    <p class="lead">ถนนกับภูมิประเทศมาจากข้อมูลจริง ส่วนร้านค้ากับผู้คนเราแต่งขึ้นเอง ถ้าชลบุรีไปได้ดี ค่อยขยายไปจังหวัดอื่น</p>
     <div class="mapwrap">
       <div>
         <svg class="mapsvg" viewBox="0 0 400 420" role="img" aria-label="แผนภาพชายฝั่งชลบุรีโดยประมาณ พร้อมพื้นที่ที่เป็นตัวเลือกจุดเริ่มต้น 3 แห่ง">
           <rect x="0" y="0" width="400" height="420" rx="24" fill="color-mix(in srgb, var(--sea) 18%, var(--bg))"/>
           <path d="M150 0 C140 40, 175 70, 165 110 C155 150, 120 165, 135 205 C150 245, 190 255, 175 300 C162 340, 130 360, 150 420 L400 420 L400 0 Z" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>
-          <g font-family="Kanit" font-size="14" fill="var(--sea)" opacity=".85">
-            <text x="30" y="210">อ่าวไทย</text>
-          </g>
-          <g font-family="Kanit" font-size="13" fill="var(--ink-2)">
-            <text x="300" y="40">N ↑</text>
-          </g>
-          <!-- candidate areas, north to south -->
-          <g>
-            <circle class="pin" cx="190" cy="95" r="11" fill="var(--accent)"/>
-            <text x="210" y="100" font-family="Kanit" font-size="17" font-weight="600" fill="var(--ink)">บางแสน</text>
-          </g>
-          <g>
-            <circle class="pin" cx="160" cy="205" r="11" fill="var(--sea)" style="animation-delay:.4s"/>
-            <text x="180" y="210" font-family="Kanit" font-size="17" font-weight="600" fill="var(--ink)">ศรีราชา</text>
-          </g>
-          <g>
-            <circle class="pin" cx="195" cy="320" r="11" fill="var(--pink)" style="animation-delay:.8s"/>
-            <text x="215" y="325" font-family="Kanit" font-size="17" font-weight="600" fill="var(--ink)">พัทยา</text>
-          </g>
+          <text x="30" y="210" font-size="14" fill="var(--sea)" opacity=".85">อ่าวไทย</text>
+          <text x="300" y="40" font-size="13" fill="var(--ink-2)">N ↑</text>
+          <circle class="pin" cx="190" cy="95" r="11" fill="var(--accent)"/>
+          <text x="210" y="100" font-size="17" font-weight="600" fill="var(--ink)">บางแสน</text>
+          <circle class="pin" cx="160" cy="205" r="11" fill="var(--sea)" style="animation-delay:.4s"/>
+          <text x="180" y="210" font-size="17" font-weight="600" fill="var(--ink)">ศรีราชา</text>
+          <circle class="pin" cx="195" cy="320" r="11" fill="var(--pink)" style="animation-delay:.8s"/>
+          <text x="215" y="325" font-size="17" font-weight="600" fill="var(--ink)">พัทยา</text>
           <rect x="250" y="360" width="120" height="36" rx="10" fill="var(--bg-2)" stroke="var(--line)"/>
-          <text x="310" y="383" text-anchor="middle" font-family="IBM Plex Sans Thai" font-size="12.5" fill="var(--ink-2)">พื้นที่แรก ~2×2 กม.</text>
+          <text x="310" y="383" text-anchor="middle" font-size="12.5" fill="var(--ink-2)">พื้นที่แรก ~2×2 กม.</text>
         </svg>
-        <p class="legend">แผนภาพโดยประมาณ ไม่ใช่แผนที่จริง</p>
+        <p class="legend">แผนภาพคร่าวๆ ไม่ใช่แผนที่จริง</p>
       </div>
       <div>
-        <h3 style="font-size:22px;margin-bottom:6px">ตัวเลือกพื้นที่แรก</h3>
-        <p style="color:var(--ink-2);font-size:15.5px;margin-bottom:6px">ทีมจะเลือก 1 พื้นที่ขนาดประมาณ 2×2 กม. ในช่วงทดสอบเทคโนโลยี</p>
-        <div class="spot"><span class="dot" style="background:var(--accent)"></span><div><b>บางแสน</b><p>ถนนเลียบหาด เมืองมหาวิทยาลัย ตลาด และเนินเขา กะทัดรัดและหลากหลาย</p></div></div>
-        <div class="spot"><span class="dot" style="background:var(--sea)"></span><div><b>ศรีราชา</b><p>เมืองท่า สะพานปลา และซอยแน่นๆ</p></div></div>
-        <div class="spot"><span class="dot" style="background:var(--pink)"></span><div><b>พัทยา</b><p>คนรู้จักเยอะและแน่นมาก แต่ต้องสร้างเนื้อหาเยอะ</p></div></div>
+        <h3 style="font-size:22px;margin-bottom:6px">จะเริ่มที่ไหนดี</h3>
+        <p style="color:var(--ink-2);font-size:15.5px;margin-bottom:6px">เราจะเลือกหนึ่งที่ ขนาดราว 2×2 กม. มาทำก่อน ยังไม่ได้ตัดสินใจ</p>
+        <div class="spot"><span class="dot" style="background:var(--accent)"></span><div><b>บางแสน</b><p>มีหาด ตลาด มหาวิทยาลัย และเขาสามมุข ครบในพื้นที่ไม่ใหญ่</p></div></div>
+        <div class="spot"><span class="dot" style="background:var(--sea)"></span><div><b>ศรีราชา</b><p>เมืองท่า สะพานปลา ซอยเยอะและแคบ</p></div></div>
+        <div class="spot"><span class="dot" style="background:var(--pink)"></span><div><b>พัทยา</b><p>ใครๆ ก็รู้จัก แต่ต้องสร้างของเยอะมาก</p></div></div>
         <div class="expand">
           <span class="p now">ชลบุรี</span><span class="arrow">→</span>
           <span class="p">จังหวัดถัดไป</span><span class="arrow">→</span>
-          <span class="p">…ทั่วประเทศ</span>
+          <span class="p">ที่เหลือ</span>
         </div>
       </div>
     </div>
@@ -525,39 +495,39 @@ footer { text-align: center; font-size: 13px; color: var(--ink-2); padding: 28px
 </section>
 
 <!-- 8. TECH -->
-<section class="slide" id="s8" data-title="เทคโนโลยี">
+<section class="slide" id="s8" data-title="เบื้องหลัง">
   <div class="wrap">
-    <div class="kicker"><span class="num">7</span> เทคโนโลยี</div>
-    <h2>สร้างแบบเครื่องสเปกต่ำก็รันได้ และสวยขึ้นได้เรื่อยๆ</h2>
-    <p class="lead">ใช้ Godot 4 (open source) และแยกส่วนสำคัญเป็นโค้ดของทีมเอง เพื่อวันหนึ่งจะย้ายไป engine ของตัวเองได้</p>
+    <div class="kicker">เบื้องหลัง</div>
+    <h2>เครื่องไม่แรง ก็ต้องรันได้</h2>
+    <p class="lead">เราพัฒนากันบนโน้ตบุ๊กธรรมดา เกมเลยต้องลื่นบนเครื่องสเปกกลางๆ ก่อน แล้วค่อยเพิ่มความสวยให้เครื่องแรง ตัวเกมทำบน Godot 4 ส่วนระบบสำคัญอย่างฟิสิกส์รถ เราเขียนแยกไว้เป็นโค้ดของเราเอง</p>
     <div class="layers">
-      <div class="layer reveal"><b>🎨 เนื้อหา</b><p>ฉาก แสง วัสดุ UI และเอฟเฟกต์ใน Godot</p><span class="keep n">ทำใหม่ถ้าย้าย engine</span></div>
-      <div class="layer reveal"><b>🔌 ตัวเชื่อม</b><p>GDExtension เชื่อมโค้ดหลักเข้ากับ Godot (บางที่สุด)</p><span class="keep n">เขียนใหม่ แต่น้อย</span></div>
-      <div class="layer reveal"><b>⚙️ โค้ดหลัก</b><p>C++ + Jolt Physics: ระบบรถ ยาง การมัดของ ตัวช่วย รีเพลย์ และงาน</p><span class="keep y">ย้ายไปได้</span></div>
-      <div class="layer reveal"><b>🗺️ ข้อมูล</b><p>แผนที่จาก DEM + OpenStreetMap ผ่าน pipeline Python เก็บเป็นไฟล์มาตรฐานเปิด</p><span class="keep y">ย้ายได้ 100%</span></div>
+      <div class="layer reveal"><b>ภาพและฉาก</b><p>แสง วัสดุ หน้าจอ และเอฟเฟกต์ ทำใน Godot</p><span class="keep n">ผูกกับ engine</span></div>
+      <div class="layer reveal"><b>ตัวเชื่อม</b><p>ชั้นบางๆ ที่ต่อโค้ดของเราเข้ากับ Godot</p><span class="keep n">ผูกกับ engine</span></div>
+      <div class="layer reveal"><b>ระบบหลัก</b><p>รถ ยาง การมัดของ ตัวช่วยขับ รีเพลย์ และงาน เขียนด้วย C++ กับ Jolt Physics</p><span class="keep y">ของเราเอง</span></div>
+      <div class="layer reveal"><b>ข้อมูลแผนที่</b><p>แปลงจากข้อมูลความสูงและ OpenStreetMap เก็บเป็นไฟล์มาตรฐาน</p><span class="keep y">ของเราเอง</span></div>
     </div>
     <div class="presets reveal" aria-label="ระดับคุณภาพภาพ">
-      <div class="preset">Low<small>เครื่องเล็ก 60 fps</small></div>
+      <div class="preset">Low<small>โน้ตบุ๊กทั่วไป</small></div>
       <div class="preset">Medium<small>ค่าเริ่มต้น</small></div>
-      <div class="preset">High<small>PC การ์ดจอกลาง</small></div>
-      <div class="preset">Ultra<small>สุดทางเครื่องแรง</small></div>
+      <div class="preset">High<small>การ์ดจอระดับกลาง</small></div>
+      <div class="preset">Ultra<small>เครื่องแรงๆ</small></div>
     </div>
-    <p class="note">ฟิสิกส์คำนวณแบบเดียวกันทุกระดับภาพ ลดภาพลงแล้วความสมจริงไม่หาย</p>
+    <p class="note">ปรับภาพต่ำแค่ไหน ของก็ยังหล่นเหมือนกันทุกเครื่อง เพราะฟิสิกส์คำนวณแยกจากภาพ</p>
   </div>
 </section>
 
 <!-- 9. ROADMAP -->
-<section class="slide" id="s9" data-title="แผนพัฒนา">
+<section class="slide" id="s9" data-title="แผนงาน">
   <div class="wrap">
-    <div class="kicker"><span class="num">8</span> แผนพัฒนา</div>
-    <h2>เส้นทางสู่ Release 1</h2>
-    <p class="lead">ประมาณ 9–12 เดือน แบบทำ part-time แต่ละเฟสจบเมื่อผ่านเกณฑ์ ไม่ใช่เมื่อถึงวันที่กำหนด</p>
+    <div class="kicker">แผนงาน</div>
+    <h2>จากตรงนี้ถึงเดโมแรก</h2>
+    <p class="lead">ทำกันนอกเวลา คาดว่าราว 9 ถึง 12 เดือน แต่จะขยับไปเฟสถัดไปก็ต่อเมื่องานผ่านจริง ไม่ได้ดูตามปฏิทิน</p>
     <div class="timeline">
-      <div class="phase now reveal"><span class="here">ตอนนี้</span><div class="when">2–4 สัปดาห์</div><h3>0 · ทดสอบเทคโนโลยี</h3><p>ภูมิประเทศชลบุรี มอไซค์ 1 คัน กล่องที่มัดได้ ต้องได้ 60 fps บนเครื่องเล็ก</p></div>
-      <div class="phase reveal"><div class="when">2–3 เดือน</div><h3>1 · Vertical slice</h3><p>พื้นที่ 1 กม.² กับงาน 3 แบบ คนนอกทีมเล่น 10 นาทีแล้วสนุก</p></div>
-      <div class="phase reveal"><div class="when">2–3 เดือน</div><h3>2 · สร้างโลก</h3><p>pipeline แผนที่อัตโนมัติ เพิ่มพื้นที่ใหม่ได้ในไม่กี่วัน</p></div>
-      <div class="phase reveal"><div class="when">2–3 เดือน</div><h3>3 · เนื้อหา</h3><p>งานเพิ่ม เหตุการณ์ เสียง และความเป็นไทย เล่นต่อเนื่อง 1–2 ชั่วโมง</p></div>
-      <div class="phase reveal"><div class="when">1–2 เดือน</div><h3>4 · ปล่อยเดโม</h3><p>ขัดเกลา ทำ build Windows แล้วปล่อยเดโมให้เล่นฟรี</p></div>
+      <div class="phase now reveal"><span class="here">ตอนนี้</span><div class="when">2–4 สัปดาห์</div><h3>0 · ลองของ</h3><p>ทำพื้นที่ชลบุรีเล็กๆ มอไซค์หนึ่งคัน กับกล่องที่มัดได้ ต้องลื่น 60 fps บนโน้ตบุ๊กของเรา</p></div>
+      <div class="phase reveal"><div class="when">2–3 เดือน</div><h3>1 · ชิ้นแรกที่เล่นได้</h3><p>พื้นที่ 1 กม.² กับงาน 3 แบบ ให้คนนอกทีมเล่นสิบนาทีแล้วยังสนุก</p></div>
+      <div class="phase reveal"><div class="when">2–3 เดือน</div><h3>2 · สร้างเมือง</h3><p>ทำเครื่องมือแปลงแผนที่เป็นเมืองอัตโนมัติ เพิ่มพื้นที่ใหม่ได้ในไม่กี่วัน</p></div>
+      <div class="phase reveal"><div class="when">2–3 เดือน</div><h3>3 · เติมเนื้อหา</h3><p>งานเพิ่ม เหตุการณ์ เสียง และรายละเอียดแบบไทยๆ จนเล่นต่อกันได้ชั่วโมงสองชั่วโมง</p></div>
+      <div class="phase reveal"><div class="when">1–2 เดือน</div><h3>4 · ปล่อยเดโม</h3><p>เก็บบั๊ก ทำเวอร์ชัน Windows แล้วปล่อยให้เล่นฟรี</p></div>
     </div>
   </div>
 </section>
@@ -565,34 +535,34 @@ footer { text-align: center; font-size: 13px; color: var(--ink-2); padding: 28px
 <!-- 10. TEAM -->
 <section class="slide" id="s10" data-title="ทีม">
   <div class="wrap">
-    <div class="kicker"><span class="num">9</span> ทีม</div>
-    <h2>3 คน + AI agent</h2>
-    <p class="lead">AI ช่วยเขียนโค้ด เครื่องมือ และ pipeline ส่วนความสนุก ความสวย และการออกแบบ คนเป็นคนตัดสิน</p>
+    <div class="kicker">ทีม</div>
+    <h2>ทีมเล็ก สามคน</h2>
+    <p class="lead">แบ่งงานกันคร่าวๆ แบบนี้ ที่เหลือช่วยกันหมด</p>
     <div class="grid g3">
-      <div class="card reveal"><span class="emoji">🏍️</span><h3>Gameplay และฟิสิกส์</h3><p>ระบบรถ ยาง การบรรทุก ตัวช่วยคนขับ และรีเพลย์</p></div>
-      <div class="card reveal"><span class="emoji">🌏</span><h3>โลกและเครื่องมือ</h3><p>สร้างแผนที่จากข้อมูลจริง ภูมิประเทศ การโหลดโลก และระดับรายละเอียด</p></div>
-      <div class="card reveal"><span class="emoji">🎨</span><h3>Tech art และ design</h3><p>วัสดุ shader แสง UI ในมือถือ และออกแบบงานส่งของ</p></div>
+      <div class="card reveal"><h3>ระบบเล่นและฟิสิกส์</h3><p>รถ ยาง การมัดของ ตัวช่วยขับ และรีเพลย์</p></div>
+      <div class="card reveal"><h3>โลกและเครื่องมือ</h3><p>แปลงข้อมูลแผนที่เป็นเมือง ภูมิประเทศ และการโหลดฉาก</p></div>
+      <div class="card reveal"><h3>ภาพและงานออกแบบ</h3><p>แสง วัสดุ หน้าจอในมือถือ และคิดงานส่งของแปลกๆ</p></div>
     </div>
   </div>
 </section>
 
 <!-- 11. FINAL -->
-<section class="slide final" id="s11" data-title="สรุป">
+<section class="slide final" id="s11" data-title="เป้าหมายแรก">
   <div class="wrap">
-    <div class="kicker" style="justify-content:center"><span class="num">✓</span> เป้าหมาย Release 1</div>
-    <h2>เดโมที่เล่นได้<br>และอยากเล่นต่อ</h2>
-    <p class="lead">พื้นที่ 2×2 กม. ในชลบุรี · มอไซค์ + กระบะ · งานขนส่งอย่างน้อย 3 แบบ · กลางวัน กลางคืน และฝน · รีเพลย์ฉากพัง</p>
+    <div class="kicker" style="justify-content:center">เป้าหมายแรก</div>
+    <h2>เดโมที่เล่นแล้ว<br>อยากเล่นต่อ</h2>
+    <p class="lead">พื้นที่ราว 2×2 กม. ในชลบุรี มอไซค์กับกระบะ งานอย่างน้อย 3 แบบ มีกลางวัน กลางคืน ฝน และรีเพลย์ ลงให้เล่นบน PC ก่อน</p>
     <div class="chips">
-      <span class="chip">💻 Windows PC (เป้าหมายหลัก)</span>
-      <span class="chip">🍎 macOS</span>
-      <span class="chip">🎮 itch.io / Steam Next Fest</span>
+      <span class="chip">Windows</span>
+      <span class="chip">macOS</span>
+      <span class="chip">itch.io / Steam Next Fest</span>
     </div>
   </div>
 </section>
 </main>
 <footer>
-  Free World เป็นชื่อชั่วคราว · เนื้อหาในหน้านี้เป็นแผนการพัฒนา อาจเปลี่ยนแปลงได้<br>
-  ข้อมูลแผนที่ในเกมจะมาจาก © OpenStreetMap contributors และ Copernicus DEM
+  Free World เป็นชื่อชั่วคราว รายละเอียดทั้งหมดอาจเปลี่ยนระหว่างพัฒนา<br>
+  ข้อมูลแผนที่ในเกม: © OpenStreetMap contributors และ Copernicus DEM
 </footer>
 
 <script>
