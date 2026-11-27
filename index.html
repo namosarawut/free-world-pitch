@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free World — เกมขนของในซอยไทย</title>
+<meta name="description" content="Free World (ชื่อชั่วคราว) เกม open world มุมมองบุคคลที่ 3 ฟิสิกส์สมจริง ขนทุกอย่างด้วยทุกอย่าง ผ่านซอยไทยที่มีชีวิต เริ่มที่จังหวัดชลบุรี">
+<meta property="og:title" content="Free World — เกมขนของในซอยไทย">
+<meta property="og:description" content="ขนทุกอย่าง ด้วยทุกอย่าง ผ่านซอยไทยที่มีชีวิต เกม open world ฟิสิกส์สมจริง เริ่มที่ชลบุรี">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#E8590C">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛵</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Kanit:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FBF5EC;
+  --bg-2: #F4EADB;
+  --surface: #FFFFFF;
+  --ink: #1F1915;
+  --ink-2: #5B4F45;
+  --line: #E6D8C4;
+  --accent: #E8590C;
+  --accent-ink: #FFFFFF;
+  --sea: #0B7A75;
+  --leaf: #2F8F3A;
+  --sun: #F2B705;
+  --pink: #C2185B;
+  --shadow: 0 10px 30px rgba(60, 35, 10, .10);
+  --radius: 20px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15110E;
+    --bg-2: #1E1813;
+    --surface: #251E18;
+    --ink: #F6EEE4;
+    --ink-2: #C3B5A6;
+    --line: #3A2F26;
+    --accent: #FF7A2F;
+    --accent-ink: #1A0E05;
+    --sea: #2BB8B0;
+    --leaf: #5CC567;
+    --sun: #FFC93C;
+    --pink: #FF4F93;
+    --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15110E;
+  --bg-2: #1E1813;
+  --surface: #251E18;
+  --ink: #F6EEE4;
+  --ink-2: #C3B5A6;
+  --line: #3A2F26;
+  --accent: #FF7A2F;
+  --accent-ink: #1A0E05;
+  --sea: #2BB8B0;
+  --leaf: #5CC567;
+  --sun: #FFC93C;
+  --pink: #FF4F93;
+  --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+}
+
+* { box-sizing: border-box; }
+html { scroll-snap-type: y proximity; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "IBM Plex Sans Thai", system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+h1, h2, h3, .display { font-family: "Kanit", "IBM Plex Sans Thai", sans-serif; line-height: 1.2; margin: 0; }
+p { margin: 0; }
+
+/* ---------- slides ---------- */
+.slide {
+  min-height: 100vh;
+  min-height: 100svh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  padding: 88px 16px 72px;
+  position: relative;
+}
+.slide:nth-of-type(even) { background: var(--bg-2); }
+@media (min-width: 901px) { .slide { padding-left: 56px; padding-right: 56px; } }
+@media (max-height: 760px) { .scroll-hint { display: none; } }
+.wrap { width: 100%; max-width: 1120px; margin: 0 auto; }
+.kicker {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: "Kanit", sans-serif; font-weight: 600; font-size: 15px;
+  color: var(--accent); letter-spacing: .04em; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.kicker .num {
+  display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%;
+  background: var(--accent); color: var(--accent-ink); font-size: 14px;
+}
+h2 { font-size: clamp(32px, 5vw, 52px); font-weight: 700; margin-bottom: 14px; }
+.lead { font-size: clamp(18px, 2.2vw, 21px); color: var(--ink-2); max-width: 760px; margin-bottom: 36px; }
+
+.grid { display: grid; gap: 18px; }
+.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 900px) { .g3, .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .g2, .g3, .g4 { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+.card h3 { font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+.card p { color: var(--ink-2); font-size: 16.5px; }
+.emoji { font-size: 40px; line-height: 1; margin-bottom: 14px; display: block; }
+.tag {
+  display: inline-block; font-size: 13px; font-weight: 600; padding: 3px 10px; border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent);
+  margin-top: 12px;
+}
+
+/* ---------- hero ---------- */
+.hero { overflow: hidden; background:
+  radial-gradient(1200px 500px at 85% -10%, color-mix(in srgb, var(--sun) 35%, transparent), transparent 70%),
+  radial-gradient(900px 500px at -10% 110%, color-mix(in srgb, var(--sea) 22%, transparent), transparent 70%),
+  var(--bg); }
+.hero .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; }
+@media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; gap: 12px; } }
+.badge {
+  display: inline-block; font-size: 14px; font-weight: 600; padding: 6px 14px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink-2); margin-bottom: 20px;
+}
+.hero h1 { font-size: clamp(56px, 10vw, 112px); font-weight: 800; letter-spacing: -.02em; }
+.hero h1 span { color: var(--accent); }
+.tagline { font-family: "Kanit", sans-serif; font-weight: 500; font-size: clamp(22px, 3.2vw, 32px); margin: 14px 0 18px; }
+.hero .lead { margin-bottom: 26px; }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip {
+  font-size: 15px; font-weight: 500; padding: 8px 14px; border-radius: 12px;
+  background: var(--surface); border: 1px solid var(--line);
+}
+.scroll-hint {
+  position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%);
+  font-size: 14px; color: var(--ink-2); display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.scroll-hint i { width: 2px; height: 26px; background: var(--ink-2); border-radius: 2px; animation: drip 1.6s ease-in-out infinite; }
+@keyframes drip { 0% { transform: scaleY(.2); transform-origin: top; opacity: .2 } 50% { transform: scaleY(1); opacity: 1 } 100% { transform: scaleY(.2); transform-origin: bottom; opacity: .2 } }
+
+svg text { font-family: "Kanit", "IBM Plex Sans Thai", sans-serif; }
+.scene { width: 100%; max-width: 520px; justify-self: center; }
+.scene .wobble { animation: wobble 2.4s ease-in-out infinite; transform-origin: 250px 230px; }
+.scene .bounce { animation: bounce .5s ease-in-out infinite alternate; }
+.scene .road-dash { animation: road 1s linear infinite; }
+.scene .melon-fall { animation: fall 2.4s ease-in-out infinite; transform-origin: center; }
+@keyframes wobble { 0%, 100% { transform: rotate(-2.2deg) } 50% { transform: rotate(2.2deg) } }
+@keyframes bounce { from { transform: translateY(0) } to { transform: translateY(-3px) } }
+@keyframes road { from { transform: translateX(0) } to { transform: translateX(-80px) } }
+@keyframes fall { 0%, 55% { transform: translate(0,0) rotate(0) ; opacity: 1 } 85% { transform: translate(-60px, 70px) rotate(-120deg); opacity: 1 } 100% { transform: translate(-80px, 70px) rotate(-160deg); opacity: 0 } }
+
+/* ---------- pillars ---------- */
+.pillar { position: relative; overflow: hidden; }
+.pillar .big {
+  font-family: "Kanit", sans-serif; font-weight: 800; font-size: 96px; line-height: 1;
+  position: absolute; right: 14px; top: 4px; color: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+.pillar h3 { font-size: 24px; }
+
+/* ---------- loop ---------- */
+.loop { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; counter-reset: step; position: relative; }
+.loop .step { position: relative; text-align: center; padding: 22px 14px; }
+.loop .step::before {
+  counter-increment: step; content: counter(step);
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--accent); color: var(--accent-ink); font-family: "Kanit", sans-serif; font-weight: 600; font-size: 14px;
+}
+.loop .step:not(:last-child)::after {
+  content: "→"; position: absolute; right: -14px; top: 50%; transform: translate(50%, -50%);
+  color: var(--accent); font-weight: 700; font-size: 22px; z-index: 1;
+}
+.loop .step h3 { font-size: 18px; }
+.loop .step p { font-size: 15px; }
+.loop-back {
+  margin-top: 22px; text-align: center; font-family: "Kanit", sans-serif; font-weight: 500; color: var(--ink-2);
+  border: 2px dashed var(--line); border-radius: 16px; padding: 12px;
+}
+.loop-back b { color: var(--accent); }
+@media (max-width: 900px) {
+  .loop { grid-template-columns: 1fr; gap: 24px; }
+  .loop .step { text-align: left; padding-left: 56px; }
+  .loop .step::before { left: 26px; top: 24px; }
+  .loop .step:not(:last-child)::after { content: "↓"; right: auto; left: 26px; top: auto; bottom: -24px; transform: translate(-50%, 0); }
+}
+
+/* ---------- jobs ---------- */
+.meter { display: flex; gap: 4px; margin-top: 14px; align-items: center; font-size: 13px; color: var(--ink-2); }
+.meter i { width: 18px; height: 8px; border-radius: 4px; background: var(--line); }
+.meter i.on { background: var(--accent); }
+.meter span { margin-right: 6px; }
+
+/* ---------- systems ---------- */
+.sys { display: flex; gap: 14px; align-items: flex-start; }
+.sys .ico {
+  flex: none; width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; font-size: 26px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+.sys h3 { font-size: 19px; margin-bottom: 4px; }
+.sys p { font-size: 15.5px; }
+
+/* ---------- map ---------- */
+.mapwrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 28px; align-items: center; }
+@media (max-width: 900px) { .mapwrap { grid-template-columns: 1fr; } }
+.mapsvg { width: 100%; max-width: 360px; display: block; margin: 0 auto; }
+.mapsvg .pin { animation: pulse 2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes pulse { 0%, 100% { transform: scale(1) } 50% { transform: scale(1.25) } }
+.legend { font-size: 13px; color: var(--ink-2); text-align: center; margin-top: 6px; }
+.spot { display: flex; gap: 12px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.spot:last-child { border-bottom: 0; }
+.spot b { font-family: "Kanit", sans-serif; font-weight: 600; font-size: 19px; }
+.spot p { color: var(--ink-2); font-size: 15.5px; }
+.dot { flex: none; width: 14px; height: 14px; border-radius: 50%; margin-top: 7px; }
+.expand { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 15px; }
+.expand .p { padding: 6px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); }
+.expand .p.now { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.expand .arrow { color: var(--ink-2); }
+
+/* ---------- tech ---------- */
+.layers { display: grid; gap: 10px; }
+.layer {
+  display: grid; grid-template-columns: 150px 1fr auto; gap: 16px; align-items: center;
+  padding: 16px 20px; border-radius: 16px; border: 1px solid var(--line); background: var(--surface);
+}
+.layer b { font-family: "Kanit", sans-serif; font-weight: 600; font-size: 18px; }
+.layer p { color: var(--ink-2); font-size: 15.5px; }
+.layer .keep { font-size: 13px; font-weight: 600; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+.keep.y { background: color-mix(in srgb, var(--leaf) 16%, transparent); color: var(--leaf); }
+.keep.n { background: color-mix(in srgb, var(--ink-2) 14%, transparent); color: var(--ink-2); }
+@media (max-width: 700px) { .layer { grid-template-columns: 1fr; gap: 4px; } .layer .keep { justify-self: start; } }
+.presets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 22px; }
+.preset { text-align: center; padding: 14px 8px; border-radius: 14px; font-family: "Kanit", sans-serif; font-weight: 600; color: #fff; }
+.preset small { display: block; font-family: "IBM Plex Sans Thai", sans-serif; font-weight: 400; font-size: 12.5px; opacity: .9; }
+.preset:nth-child(1) { background: #8A7A6B; }
+.preset:nth-child(2) { background: #B8692E; }
+.preset:nth-child(3) { background: #D9530E; }
+.preset:nth-child(4) { background: #B0124F; }
+@media (max-width: 500px) { .presets { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------- roadmap ---------- */
+.timeline { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; position: relative; }
+.timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 19px; height: 3px; background: var(--line); }
+.phase { position: relative; padding-top: 46px; }
+.phase::before {
+  content: ""; position: absolute; top: 10px; left: 0; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--surface); border: 3px solid var(--line);
+}
+.phase.now::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 25%, transparent); }
+.phase .when { font-size: 13px; color: var(--ink-2); font-weight: 600; }
+.phase h3 { font-size: 19px; margin: 2px 0 6px; }
+.phase p { font-size: 15px; color: var(--ink-2); }
+.phase .here { display: inline-block; margin-bottom: 6px; font-size: 12.5px; font-weight: 600; color: var(--accent-ink); background: var(--accent); padding: 2px 10px; border-radius: 999px; }
+@media (max-width: 900px) {
+  .timeline { grid-template-columns: 1fr; gap: 0; }
+  .timeline::before { left: 10px; right: auto; top: 0; bottom: 0; width: 3px; height: auto; }
+  .phase { padding: 0 0 22px 44px; }
+  .phase::before { top: 2px; left: 0; }
+}
+.note { margin-top: 26px; font-size: 15.5px; color: var(--ink-2); }
+
+/* ---------- final ---------- */
+.final { text-align: center; background:
+  radial-gradient(800px 400px at 50% 0%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 70%), var(--bg-2); }
+.final h2 { font-size: clamp(40px, 7vw, 76px); }
+.final .lead { margin: 0 auto 30px; }
+.final .chips { justify-content: center; }
+footer { text-align: center; font-size: 13px; color: var(--ink-2); padding: 28px 16px 40px; background: var(--bg-2); }
+
+/* ---------- chrome: nav dots, progress, theme ---------- */
+.progress { position: fixed; top: 0; left: 0; height: 4px; width: 0; background: var(--accent); z-index: 20; transition: width .15s linear; }
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 15; display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 16px; pointer-events: none;
+}
+.brand, .theme { pointer-events: auto; }
+.brand { font-family: "Kanit", sans-serif; font-weight: 700; font-size: 18px; color: var(--ink); text-decoration: none;
+  background: color-mix(in srgb, var(--bg) 80%, transparent); backdrop-filter: blur(8px); padding: 6px 12px; border-radius: 12px; }
+.theme {
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 12px;
+  height: 38px; min-width: 38px; padding: 0 12px; font-size: 15px; cursor: pointer; font-family: inherit;
+}
+.dots { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 15; }
+.dots a { width: 11px; height: 11px; border-radius: 50%; background: var(--line); display: block; transition: transform .2s, background .2s; }
+.dots a.active { background: var(--accent); transform: scale(1.35); }
+.dots a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (max-width: 900px) { .dots { display: none; } }
+.counter { position: fixed; left: 16px; bottom: 14px; font-size: 13px; color: var(--ink-2); z-index: 15; font-family: "Kanit", sans-serif; }
+@media (max-width: 600px) { .counter { display: none; } }
+
+/* reveal */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .scene *, .mapsvg .pin, .scroll-hint i { animation: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="topbar">
+  <a class="brand" href="#s1">🛵 Free World</a>
+  <button class="theme" id="theme" type="button" aria-label="สลับโหมดสว่าง/มืด">◐</button>
+</div>
+<nav class="dots" id="dots" aria-label="สไลด์"></nav>
+<div class="counter" id="counter"></div>
+
+<main>
+<!-- 1. HERO -->
+<section class="slide hero" id="s1" data-title="หน้าแรก">
+  <div class="wrap">
+    <div>
+      <span class="badge">ชื่อชั่วคราว · Release 1 · กำลังวางแผน</span>
+      <h1 class="display">Free <span>World</span></h1>
+      <p class="tagline">ขนทุกอย่าง ด้วยทุกอย่าง<br>ผ่านซอยไทยที่มีชีวิต</p>
+      <p class="lead">เกม open world 3D มุมมองบุคคลที่ 3 ที่ <b>ฟิสิกส์สมจริงคือตัวเกม</b> รับงานส่งของแปลกๆ มัดของขึ้นรถเอง แล้วฝ่าซอย ฝน หมา และตลาดนัด ไปส่งให้ถึงมือลูกค้าแบบไม่ช้ำ</p>
+      <div class="chips">
+        <span class="chip">🗺️ เริ่มที่ชลบุรี</span>
+        <span class="chip">⚙️ ฟิสิกส์สมจริง</span>
+        <span class="chip">🎮 เล่นง่าย เข้าใจใน 10 วินาที</span>
+      </div>
+    </div>
+    <svg class="scene" viewBox="0 0 500 360" role="img" aria-label="ภาพประกอบ: มอเตอร์ไซค์บรรทุกแตงโมจนล้นกำลังวิ่งบนถนน">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="var(--sun)" stop-opacity=".55"/>
+          <stop offset="1" stop-color="var(--accent)" stop-opacity=".15"/>
+        </linearGradient>
+      </defs>
+      <rect x="10" y="10" width="480" height="300" rx="28" fill="url(#sky)"/>
+      <circle cx="390" cy="90" r="42" fill="var(--sun)" opacity=".9"/>
+      <!-- skyline -->
+      <g fill="var(--ink)" opacity=".12">
+        <rect x="40" y="150" width="50" height="110"/><rect x="95" y="120" width="40" height="140"/>
+        <rect x="140" y="165" width="60" height="95"/><path d="M330 260 V170 l30 -30 l30 30 V260z"/>
+        <rect x="400" y="150" width="55" height="110"/>
+      </g>
+      <!-- road -->
+      <rect x="10" y="260" width="480" height="50" fill="var(--ink)" opacity=".85"/>
+      <clipPath id="roadclip"><rect x="10" y="260" width="480" height="50"/></clipPath>
+      <g clip-path="url(#roadclip)">
+        <g class="road-dash" fill="var(--sun)">
+          <rect x="20" y="283" width="44" height="5" rx="2"/><rect x="100" y="283" width="44" height="5" rx="2"/>
+          <rect x="180" y="283" width="44" height="5" rx="2"/><rect x="260" y="283" width="44" height="5" rx="2"/>
+          <rect x="340" y="283" width="44" height="5" rx="2"/><rect x="420" y="283" width="44" height="5" rx="2"/>
+          <rect x="500" y="283" width="44" height="5" rx="2"/>
+        </g>
+      </g>
+      <g class="bounce">
+        <!-- cargo stack -->
+        <g class="wobble">
+          <rect x="196" y="176" width="112" height="16" rx="4" fill="#8B5A2B"/>
+          <circle cx="214" cy="160" r="17" fill="var(--leaf)"/><circle cx="249" cy="160" r="17" fill="var(--leaf)"/><circle cx="284" cy="160" r="17" fill="var(--leaf)"/>
+          <circle cx="231" cy="130" r="17" fill="var(--leaf)"/><circle cx="266" cy="130" r="17" fill="var(--leaf)"/>
+          <circle cx="249" cy="101" r="17" fill="var(--leaf)"/>
+          <g stroke="#1E5A25" stroke-width="2" fill="none" opacity=".6">
+            <path d="M206 150 q8 10 0 22"/><path d="M241 150 q8 10 0 22"/><path d="M276 150 q8 10 0 22"/>
+            <path d="M223 120 q8 10 0 22"/><path d="M258 120 q8 10 0 22"/><path d="M241 91 q8 10 0 22"/>
+          </g>
+          <!-- strap -->
+          <path d="M200 182 C215 90, 285 90, 304 182" stroke="var(--pink)" stroke-width="4" fill="none" stroke-dasharray="8 5"/>
+          <!-- the one that escapes -->
+          <g class="melon-fall"><circle cx="300" cy="104" r="15" fill="var(--leaf)"/><path d="M292 95 q7 9 0 19" stroke="#1E5A25" stroke-width="2" fill="none" opacity=".6"/></g>
+        </g>
+        <!-- scooter -->
+        <path d="M170 236 h150 q16 0 22 -16 l10 -28 h22 l-8 30 q-6 22 -30 26 h-166z" fill="var(--accent)"/>
+        <rect x="186" y="190" width="126" height="10" rx="5" fill="var(--ink)" opacity=".75"/>
+        <path d="M352 192 l18 -46 h14" stroke="var(--ink)" stroke-width="7" stroke-linecap="round" fill="none"/>
+        <circle cx="200" cy="252" r="24" fill="var(--ink)"/><circle cx="200" cy="252" r="10" fill="var(--bg)"/>
+        <circle cx="340" cy="252" r="24" fill="var(--ink)"/><circle cx="340" cy="252" r="10" fill="var(--bg)"/>
+        <circle cx="388" cy="158" r="6" fill="var(--sun)"/>
+      </g>
+      <text x="250" y="342" text-anchor="middle" font-family="Kanit" font-size="15" fill="var(--ink-2)">บรรทุกเกิน = ได้เงินเยอะ… ถ้าไปถึง 😅</text>
+    </svg>
+  </div>
+  <div class="scroll-hint">เลื่อนลง หรือกดปุ่มลูกศร<i></i></div>
+</section>
+
+<!-- 2. WHAT -->
+<section class="slide" id="s2" data-title="เกมนี้คืออะไร">
+  <div class="wrap">
+    <div class="kicker"><span class="num">1</span> สรุปใน 30 วินาที</div>
+    <h2>เกมนี้คืออะไร?</h2>
+    <p class="lead">ลองนึกถึงไรเดอร์ส่งของ แต่ของที่ต้องส่งคือแตงโม 40 ลูก ก๋วยเตี๋ยวน้ำ หรือเค้กแต่งงาน และทุกอย่างหล่น หก กลิ้ง ได้จริงตามหลักฟิสิกส์</p>
+    <div class="grid g3">
+      <div class="card reveal"><span class="emoji">🎮</span><h3>ประเภทเกม</h3><p>Open world 3D มุมมองบุคคลที่ 3 แนวขนส่งที่ใช้ฟิสิกส์สมจริงเป็นหัวใจ เล่นคนเดียว</p></div>
+      <div class="card reveal"><span class="emoji">🏝️</span><h3>ฉาก</h3><p>เมืองไทยที่สร้างจากข้อมูลแผนที่จริง เริ่มที่จังหวัดชลบุรี มีทะเล ตลาด ท่าเรือ และเนินเขา</p></div>
+      <div class="card reveal"><span class="emoji">📦</span><h3>เล่นยังไง</h3><p>รับงานจากแอปในมือถือ จัดของขึ้นรถ ขับไปส่ง ได้เงินตามสภาพของและความเร็ว แล้วเอาไปอัปเกรดรถ</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. PILLARS -->
+<section class="slide" id="s3" data-title="หลักออกแบบ">
+  <div class="wrap">
+    <div class="kicker"><span class="num">2</span> หลักออกแบบ</div>
+    <h2>เข้าถึงง่าย แต่แปลกใหม่</h2>
+    <p class="lead">ทุกระบบในเกมต้องผ่าน 3 ข้อนี้</p>
+    <div class="grid g3">
+      <div class="card pillar reveal"><span class="big">1</span><span class="emoji">🧠</span><h3>ข้างในลึก ปุ่มง่าย</h3><p>ฟิสิกส์คำนวณจริงทั้งหมด แต่กดปุ่มเดียวก็มัดของได้ และมีตัวช่วยขับ มือใหม่เล่นได้ทันที ส่วนสายจริงจังปิดตัวช่วยเองได้</p></div>
+      <div class="card pillar reveal"><span class="big">2</span><span class="emoji">😂</span><h3>พังแล้วต้องขำ</h3><p>ซุปหก แตงโมกลิ้ง รถล้ม ต้องทำให้หัวเราะก่อนหงุดหงิด และมีรีเพลย์ให้แชร์ฉากพังได้ทันที</p></div>
+      <div class="card pillar reveal"><span class="big">3</span><span class="emoji">🌗</span><h3>แผนที่เล็ก แต่เวลาลึก</h3><p>ซอยเดียวกันตอนเช้า ตอนฝนตก และตอนตลาดนัดตั้งแผง เล่นไม่เหมือนกัน ความสนุกไม่ได้มาจากขนาดแผนที่</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. LOOP -->
+<section class="slide" id="s4" data-title="วงจรการเล่น">
+  <div class="wrap">
+    <div class="kicker"><span class="num">3</span> วงจรการเล่น</div>
+    <h2>10 นาทีในเกม</h2>
+    <p class="lead">ผู้เล่นทำสิ่งนี้วนไปเรื่อยๆ และงานจะยากและแปลกขึ้นทุกรอบ</p>
+    <div class="loop">
+      <div class="card step reveal"><span class="emoji">📱</span><h3>รับงาน</h3><p>เลือกงานจากแอปในมือถือ</p></div>
+      <div class="card step reveal"><span class="emoji">🛵</span><h3>เลือกรถ</h3><p>มอไซค์ ซาเล้ง หรือกระบะ</p></div>
+      <div class="card step reveal"><span class="emoji">🪢</span><h3>จัดและมัดของ</h3><p>จะบรรทุกเกินดีไหม?</p></div>
+      <div class="card step reveal"><span class="emoji">🌧️</span><h3>ฝ่าซอย</h3><p>ฝน หมา ตลาดนัด และทางลัด</p></div>
+      <div class="card step reveal"><span class="emoji">💰</span><h3>ส่งของ</h3><p>ได้เงินตามสภาพของ + ทิป</p></div>
+    </div>
+    <div class="loop-back reveal">↺ เอาเงินไป <b>อัปเกรดรถ</b> และสร้าง <b>ชื่อเสียงในซอย</b> เพื่อปลดล็อกงานที่แปลกกว่าเดิม</div>
+  </div>
+</section>
+
+<!-- 5. JOBS -->
+<section class="slide" id="s5" data-title="งานขนส่ง">
+  <div class="wrap">
+    <div class="kicker"><span class="num">4</span> งานขนส่ง</div>
+    <h2>แต่ละงาน บังคับให้ขับไม่เหมือนกัน</h2>
+    <p class="lead">ไม่ใช่แค่ไปจาก A ไป B แต่ของแต่ละแบบมีน้ำหนัก ทรง และความเปราะต่างกัน</p>
+    <div class="grid g3">
+      <div class="card reveal"><span class="emoji">🍉</span><h3>แตงโม 40 ลูก</h3><p>ของกลมกลิ้งได้ ต้องจัดเรียงดีๆ ไม่งั้นหล่นตลอดทาง</p><div class="meter"><span>ความยาก</span><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></div>
+      <div class="card reveal"><span class="emoji">🍜</span><h3>ก๋วยเตี๋ยวน้ำ</h3><p>เบรกแรงหรือเลี้ยวไวน้ำซุปก็หก ต้องขับนุ่มที่สุด</p><div class="meter"><span>ความยาก</span><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
+      <div class="card reveal"><span class="emoji">🧊</span><h3>น้ำแข็ง</h3><p>ละลายตามเวลาและแดด ยิ่งเที่ยงยิ่งต้องรีบ</p><div class="meter"><span>ความยาก</span><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
+      <div class="card reveal"><span class="emoji">🎂</span><h3>เค้กแต่งงาน</h3><p>เปราะที่สุด ตกหลุมทีเดียวงานแต่งก็พัง</p><div class="meter"><span>ความยาก</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+      <div class="card reveal"><span class="emoji">🛏️</span><h3>ย้ายบ้าน</h3><p>ตู้เย็นกับที่นอนบนกระบะ ลมพัดแรง เลี้ยวในซอยแคบ</p><div class="meter"><span>ความยาก</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+      <div class="card reveal"><span class="emoji">🎋</span><h3>ข้าวหลาม</h3><p>ของดีชลบุรี กระบอกไม้ไผ่ยาว ล้มง่าย ต้องมัดให้แน่น</p><div class="meter"><span>ความยาก</span><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div><span class="tag">ของประจำถิ่น</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. SYSTEMS -->
+<section class="slide" id="s6" data-title="ระบบเด่น">
+  <div class="wrap">
+    <div class="kicker"><span class="num">5</span> ระบบเด่น</div>
+    <h2>สิ่งที่ทำให้เกมนี้ไม่เหมือนใคร</h2>
+    <p class="lead">ทุกระบบส่งเสริมกัน และใช้ฟิสิกส์เป็นตัวขับเคลื่อน</p>
+    <div class="grid g2">
+      <div class="card sys reveal"><div class="ico">🪢</div><div><h3>บรรทุกและมัดของ</h3><p>วางของเองอิสระ กดปุ่มเดียวระบบช่วยมัดให้ จะบรรทุกเกินก็ได้ แต่รถจะโคลงและเบรกไม่อยู่</p></div></div>
+      <div class="card sys reveal"><div class="ico">🛟</div><div><h3>ตัวช่วยคนขับ</h3><p>ช่วยทรงตัว กันล้อล็อก และ slow-motion ตอนเกือบชน ยิ่งปิดตัวช่วยเยอะ ยิ่งได้ทิปเยอะ</p></div></div>
+      <div class="card sys reveal"><div class="ico">🎬</div><div><h3>รีเพลย์ฉากพัง</h3><p>บันทึก 15 วินาทีล่าสุดตลอดเวลา ชนปุ๊บดูย้อนหลังได้ทันที เปลี่ยนมุมกล้องได้ แล้วแชร์เป็นคลิป</p></div></div>
+      <div class="card sys reveal"><div class="ico">🐕</div><div><h3>ซอยที่มีชีวิต</h3><p>หมาซอยวิ่งไล่ พายุฝนบ่าย น้ำท่วมขัง ซ่อมถนน และตลาดนัดตอนเย็นที่ปิดถนนจนเส้นทางเปลี่ยน</p></div></div>
+      <div class="card sys reveal"><div class="ico">🧭</div><div><h3>ค้นพบทางลัด</h3><p>เริ่มเกมเห็นแค่ถนนใหญ่ ทางลัดผ่านตลาดและตรอกต้องค้นพบเอง ยิ่งเล่นยิ่งรู้จักเมือง</p></div></div>
+      <div class="card sys reveal"><div class="ico">📱</div><div><h3>มือถือในเกม</h3><p>ทุกเมนูเป็นแอปในมือถือ ทั้งรับงาน แผนที่ และแชทกับลูกค้า ("พี่ถึงยังคะ")</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. MAP -->
+<section class="slide" id="s7" data-title="แผนที่">
+  <div class="wrap">
+    <div class="kicker"><span class="num">6</span> แผนที่</div>
+    <h2>เริ่มที่ชลบุรี แล้วขยายทีละจังหวัด</h2>
+    <p class="lead">สร้างจากข้อมูลภูมิประเทศและแผนที่ถนนจริง แต่ร้านค้าและผู้คนเป็นของสมมติทั้งหมด</p>
+    <div class="mapwrap">
+      <div>
+        <svg class="mapsvg" viewBox="0 0 400 420" role="img" aria-label="แผนภาพชายฝั่งชลบุรีโดยประมาณ พร้อมพื้นที่ที่เป็นตัวเลือกจุดเริ่มต้น 3 แห่ง">
+          <rect x="0" y="0" width="400" height="420" rx="24" fill="color-mix(in srgb, var(--sea) 18%, var(--bg))"/>
+          <path d="M150 0 C140 40, 175 70, 165 110 C155 150, 120 165, 135 205 C150 245, 190 255, 175 300 C162 340, 130 360, 150 420 L400 420 L400 0 Z" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>
+          <g font-family="Kanit" font-size="14" fill="var(--sea)" opacity=".85">
+            <text x="30" y="210">อ่าวไทย</text>
+          </g>
+          <g font-family="Kanit" font-size="13" fill="var(--ink-2)">
+            <text x="300" y="40">N ↑</text>
+          </g>
+          <!-- candidate areas, north to south -->
+          <g>
+            <circle class="pin" cx="190" cy="95" r="11" fill="var(--accent)"/>
+            <text x="210" y="100" font-family="Kanit" font-size="17" font-weight="600" fill="var(--ink)">บางแสน</text>
+          </g>
+          <g>
+            <circle class="pin" cx="160" cy="205" r="11" fill="var(--sea)" style="animation-delay:.4s"/>
+            <text x="180" y="210" font-family="Kanit" font-size="17" font-weight="600" fill="var(--ink)">ศรีราชา</text>
+          </g>
+          <g>
+            <circle class="pin" cx="195" cy="320" r="11" fill="var(--pink)" style="animation-delay:.8s"/>
+            <text x="215" y="325" font-family="Kanit" font-size="17" font-weight="600" fill="var(--ink)">พัทยา</text>
+          </g>
+          <rect x="250" y="360" width="120" height="36" rx="10" fill="var(--bg-2)" stroke="var(--line)"/>
+          <text x="310" y="383" text-anchor="middle" font-family="IBM Plex Sans Thai" font-size="12.5" fill="var(--ink-2)">พื้นที่แรก ~2×2 กม.</text>
+        </svg>
+        <p class="legend">แผนภาพโดยประมาณ ไม่ใช่แผนที่จริง</p>
+      </div>
+      <div>
+        <h3 style="font-size:22px;margin-bottom:6px">ตัวเลือกพื้นที่แรก</h3>
+        <p style="color:var(--ink-2);font-size:15.5px;margin-bottom:6px">ทีมจะเลือก 1 พื้นที่ขนาดประมาณ 2×2 กม. ในช่วงทดสอบเทคโนโลยี</p>
+        <div class="spot"><span class="dot" style="background:var(--accent)"></span><div><b>บางแสน</b><p>ถนนเลียบหาด เมืองมหาวิทยาลัย ตลาด และเนินเขา กะทัดรัดและหลากหลาย</p></div></div>
+        <div class="spot"><span class="dot" style="background:var(--sea)"></span><div><b>ศรีราชา</b><p>เมืองท่า สะพานปลา และซอยแน่นๆ</p></div></div>
+        <div class="spot"><span class="dot" style="background:var(--pink)"></span><div><b>พัทยา</b><p>คนรู้จักเยอะและแน่นมาก แต่ต้องสร้างเนื้อหาเยอะ</p></div></div>
+        <div class="expand">
+          <span class="p now">ชลบุรี</span><span class="arrow">→</span>
+          <span class="p">จังหวัดถัดไป</span><span class="arrow">→</span>
+          <span class="p">…ทั่วประเทศ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. TECH -->
+<section class="slide" id="s8" data-title="เทคโนโลยี">
+  <div class="wrap">
+    <div class="kicker"><span class="num">7</span> เทคโนโลยี</div>
+    <h2>สร้างแบบเครื่องสเปกต่ำก็รันได้ และสวยขึ้นได้เรื่อยๆ</h2>
+    <p class="lead">ใช้ Godot 4 (open source) และแยกส่วนสำคัญเป็นโค้ดของทีมเอง เพื่อวันหนึ่งจะย้ายไป engine ของตัวเองได้</p>
+    <div class="layers">
+      <div class="layer reveal"><b>🎨 เนื้อหา</b><p>ฉาก แสง วัสดุ UI และเอฟเฟกต์ใน Godot</p><span class="keep n">ทำใหม่ถ้าย้าย engine</span></div>
+      <div class="layer reveal"><b>🔌 ตัวเชื่อม</b><p>GDExtension เชื่อมโค้ดหลักเข้ากับ Godot (บางที่สุด)</p><span class="keep n">เขียนใหม่ แต่น้อย</span></div>
+      <div class="layer reveal"><b>⚙️ โค้ดหลัก</b><p>C++ + Jolt Physics: ระบบรถ ยาง การมัดของ ตัวช่วย รีเพลย์ และงาน</p><span class="keep y">ย้ายไปได้</span></div>
+      <div class="layer reveal"><b>🗺️ ข้อมูล</b><p>แผนที่จาก DEM + OpenStreetMap ผ่าน pipeline Python เก็บเป็นไฟล์มาตรฐานเปิด</p><span class="keep y">ย้ายได้ 100%</span></div>
+    </div>
+    <div class="presets reveal" aria-label="ระดับคุณภาพภาพ">
+      <div class="preset">Low<small>เครื่องเล็ก 60 fps</small></div>
+      <div class="preset">Medium<small>ค่าเริ่มต้น</small></div>
+      <div class="preset">High<small>PC การ์ดจอกลาง</small></div>
+      <div class="preset">Ultra<small>สุดทางเครื่องแรง</small></div>
+    </div>
+    <p class="note">ฟิสิกส์คำนวณแบบเดียวกันทุกระดับภาพ ลดภาพลงแล้วความสมจริงไม่หาย</p>
+  </div>
+</section>
+
+<!-- 9. ROADMAP -->
+<section class="slide" id="s9" data-title="แผนพัฒนา">
+  <div class="wrap">
+    <div class="kicker"><span class="num">8</span> แผนพัฒนา</div>
+    <h2>เส้นทางสู่ Release 1</h2>
+    <p class="lead">ประมาณ 9–12 เดือน แบบทำ part-time แต่ละเฟสจบเมื่อผ่านเกณฑ์ ไม่ใช่เมื่อถึงวันที่กำหนด</p>
+    <div class="timeline">
+      <div class="phase now reveal"><span class="here">ตอนนี้</span><div class="when">2–4 สัปดาห์</div><h3>0 · ทดสอบเทคโนโลยี</h3><p>ภูมิประเทศชลบุรี มอไซค์ 1 คัน กล่องที่มัดได้ ต้องได้ 60 fps บนเครื่องเล็ก</p></div>
+      <div class="phase reveal"><div class="when">2–3 เดือน</div><h3>1 · Vertical slice</h3><p>พื้นที่ 1 กม.² กับงาน 3 แบบ คนนอกทีมเล่น 10 นาทีแล้วสนุก</p></div>
+      <div class="phase reveal"><div class="when">2–3 เดือน</div><h3>2 · สร้างโลก</h3><p>pipeline แผนที่อัตโนมัติ เพิ่มพื้นที่ใหม่ได้ในไม่กี่วัน</p></div>
+      <div class="phase reveal"><div class="when">2–3 เดือน</div><h3>3 · เนื้อหา</h3><p>งานเพิ่ม เหตุการณ์ เสียง และความเป็นไทย เล่นต่อเนื่อง 1–2 ชั่วโมง</p></div>
+      <div class="phase reveal"><div class="when">1–2 เดือน</div><h3>4 · ปล่อยเดโม</h3><p>ขัดเกลา ทำ build Windows แล้วปล่อยเดโมให้เล่นฟรี</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. TEAM -->
+<section class="slide" id="s10" data-title="ทีม">
+  <div class="wrap">
+    <div class="kicker"><span class="num">9</span> ทีม</div>
+    <h2>3 คน + AI agent</h2>
+    <p class="lead">AI ช่วยเขียนโค้ด เครื่องมือ และ pipeline ส่วนความสนุก ความสวย และการออกแบบ คนเป็นคนตัดสิน</p>
+    <div class="grid g3">
+      <div class="card reveal"><span class="emoji">🏍️</span><h3>Gameplay และฟิสิกส์</h3><p>ระบบรถ ยาง การบรรทุก ตัวช่วยคนขับ และรีเพลย์</p></div>
+      <div class="card reveal"><span class="emoji">🌏</span><h3>โลกและเครื่องมือ</h3><p>สร้างแผนที่จากข้อมูลจริง ภูมิประเทศ การโหลดโลก และระดับรายละเอียด</p></div>
+      <div class="card reveal"><span class="emoji">🎨</span><h3>Tech art และ design</h3><p>วัสดุ shader แสง UI ในมือถือ และออกแบบงานส่งของ</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. FINAL -->
+<section class="slide final" id="s11" data-title="สรุป">
+  <div class="wrap">
+    <div class="kicker" style="justify-content:center"><span class="num">✓</span> เป้าหมาย Release 1</div>
+    <h2>เดโมที่เล่นได้<br>และอยากเล่นต่อ</h2>
+    <p class="lead">พื้นที่ 2×2 กม. ในชลบุรี · มอไซค์ + กระบะ · งานขนส่งอย่างน้อย 3 แบบ · กลางวัน กลางคืน และฝน · รีเพลย์ฉากพัง</p>
+    <div class="chips">
+      <span class="chip">💻 Windows PC (เป้าหมายหลัก)</span>
+      <span class="chip">🍎 macOS</span>
+      <span class="chip">🎮 itch.io / Steam Next Fest</span>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  Free World เป็นชื่อชั่วคราว · เนื้อหาในหน้านี้เป็นแผนการพัฒนา อาจเปลี่ยนแปลงได้<br>
+  ข้อมูลแผนที่ในเกมจะมาจาก © OpenStreetMap contributors และ Copernicus DEM
+</footer>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var dots = document.getElementById('dots');
+  var counter = document.getElementById('counter');
+  var progress = document.getElementById('progress');
+  var current = 0;
+
+  slides.forEach(function (s, i) {
+    var a = document.createElement('a');
+    a.href = '#' + s.id;
+    a.setAttribute('aria-label', (i + 1) + '. ' + s.dataset.title);
+    a.title = s.dataset.title;
+    dots.appendChild(a);
+  });
+  var dotLinks = dots.querySelectorAll('a');
+
+  function setActive(i) {
+    current = i;
+    dotLinks.forEach(function (d, j) { d.classList.toggle('active', j === i); });
+    counter.textContent = (i + 1) + ' / ' + slides.length + ' · ' + slides[i].dataset.title;
+  }
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) setActive(slides.indexOf(e.target));
+      });
+    }, { threshold: 0.5 });
+    slides.forEach(function (s) { io.observe(s); });
+
+    var ro = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(function (el, i) {
+      el.style.transitionDelay = (i % 6) * 60 + 'ms';
+      ro.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+  }
+  setActive(0);
+
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  function go(i) {
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    slides[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    var tag = (e.target && e.target.tagName) || '';
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'BUTTON') return;
+    if (['ArrowDown', 'ArrowRight', 'PageDown', ' '].indexOf(e.key) >= 0) { e.preventDefault(); go(current + 1); }
+    else if (['ArrowUp', 'ArrowLeft', 'PageUp'].indexOf(e.key) >= 0) { e.preventDefault(); go(current - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); go(0); }
+    else if (e.key === 'End') { e.preventDefault(); go(slides.length - 1); }
+  });
+
+  var root = document.documentElement;
+  var btn = document.getElementById('theme');
+  try {
+    var saved = localStorage.getItem('fw-theme');
+    if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved);
+  } catch (err) {}
+  btn.addEventListener('click', function () {
+    var isDark = root.getAttribute('data-theme') === 'dark' ||
+      (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    var next = isDark ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('fw-theme', next); } catch (err) {}
+  });
+})();
+</script>
+</body>
+</html>
